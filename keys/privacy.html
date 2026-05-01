@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keys — Privacy Policy</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: #fafafa;
+      color: #1a1a1a;
+      min-height: 100vh;
+      padding: 56px 24px 96px;
+      line-height: 1.55;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .breadcrumb {
+      font-size: 0.8125rem;
+      color: #888;
+      margin-bottom: 32px;
+    }
+
+    .breadcrumb a {
+      color: #888;
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      color: #1a1a1a;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    .effective {
+      font-size: 0.875rem;
+      color: #666;
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-top: 36px;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-size: 0.9375rem;
+      color: #2a2a2a;
+      margin-bottom: 14px;
+    }
+
+    ul {
+      margin: 8px 0 14px 24px;
+    }
+
+    li {
+      font-size: 0.9375rem;
+      color: #2a2a2a;
+      margin-bottom: 6px;
+    }
+
+    .lede {
+      font-size: 1rem;
+      color: #1a1a1a;
+      padding: 20px 24px;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      margin-bottom: 36px;
+    }
+
+    a {
+      color: #1a1a1a;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.85em;
+      background: #f0f0f0;
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+
+    .footer {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid #e0e0e0;
+      font-size: 0.8125rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/">Bob Kitchen</a> &nbsp;/&nbsp; <a href="/keys/">Keys</a> &nbsp;/&nbsp; Privacy
+    </div>
+
+    <h1>Keys Privacy Policy</h1>
+    <p class="effective">Effective May 1, 2026</p>
+
+    <div class="lede">
+      Keys is a credential manager that runs on your devices. Your secrets are encrypted on-device with a key derived from a passphrase only you know. They sync through your own iCloud account, end-to-end encrypted. We do not operate any servers that hold your data, and we do not collect analytics, telemetry, or crash reports. The rest of this page describes that in detail.
+    </div>
+
+    <h2>Who runs Keys</h2>
+    <p>
+      Keys is developed and published by Bob Kitchen as an independent developer. Contact: <a href="mailto:bobkitchen@gmail.com">bobkitchen@gmail.com</a>. There is no separate company entity, no investors, and no third-party operators with access to anything described below.
+    </p>
+
+    <h2>What Keys stores</h2>
+    <p>
+      Keys stores the credentials you choose to put into it: API keys, passwords, OAuth tokens, SSH keys, certificates, connection strings, and your notes about them. It also stores any tags, project labels, environment labels, attachments, and revision history that you create.
+    </p>
+    <p>
+      Every credential field is encrypted on your device before it is written to disk. The encryption key is derived from your passphrase using a memory-hard key-derivation function and is never transmitted off your device. Apple never sees the key, and neither does the developer.
+    </p>
+
+    <h2>How sync works</h2>
+    <p>
+      Keys uses your personal iCloud account to sync your encrypted vault across your devices, via Apple's CloudKit. Apple's servers store and relay only the encrypted ciphertext &mdash; they cannot read the contents.
+    </p>
+    <ul>
+      <li>The sync container is private to your iCloud account; it is not shared with the developer or other users.</li>
+      <li>If you sign out of iCloud or disable iCloud Drive for Keys, sync stops; the encrypted data on each device remains.</li>
+      <li>If you uninstall Keys from a device, that device's local copy is removed by the system. Your iCloud copy is unaffected.</li>
+    </ul>
+
+    <h2>Authentication and biometrics</h2>
+    <p>
+      Keys can be unlocked with Face ID, Touch ID, Optic ID, or a system passphrase. Biometric matching is performed entirely by Apple's Local Authentication framework on the Secure Enclave; the underlying biometric data never leaves your device, and Keys never sees it. The biometric prompt is used only as a gate that releases the locally stored encryption material.
+    </p>
+
+    <h2>Optional AI extraction</h2>
+    <p>
+      Keys can extract credentials from text you paste, files you import, or screenshots you provide, using a hybrid pipeline:
+    </p>
+    <ul>
+      <li>Pattern-based extraction (regular expressions for known credential shapes) runs entirely on your device. No network call is made.</li>
+      <li>Optional metadata classification by a large language model is available if, and only if, you provide your own OpenRouter API key. If enabled, the input you submit for extraction is sent to OpenRouter (<a href="https://openrouter.ai/privacy">openrouter.ai/privacy</a>) for processing. The LLM is asked to produce metadata (record name, service, kind); it is not used to generate or copy the secret values.</li>
+      <li>The LLM provider is, in this case, a third party you have chosen to use. Keys does not relay your traffic through any developer-operated endpoint.</li>
+    </ul>
+    <p>
+      You can disable the AI features entirely. Pattern-based extraction works offline.
+    </p>
+
+    <h2>Optional credential validation</h2>
+    <p>
+      Keys can verify whether a stored API key still authenticates against its provider (for example: OpenAI, Anthropic, GitHub). If you opt in, Keys sends a minimal authentication request directly from your device to the provider's API using the stored credential. The request goes to the provider, not to the developer. The result (alive / rejected / unknown) is cached locally. You can disable this per-record or globally.
+    </p>
+
+    <h2>Optional companion features</h2>
+    <ul>
+      <li><strong>CLI tool.</strong> Keys ships an optional command-line interface that talks to the running app over a local Unix domain socket inside your user's App Group container. No network is involved.</li>
+      <li><strong>SSH agent.</strong> Keys can act as an OpenSSH agent for keys you store inside it, again via a local socket. Signing happens inside the app; private key material is not exported.</li>
+      <li><strong>Share extension.</strong> The macOS / iOS share extension lets you send selected text to Keys for ingestion. The text stays inside the App Group container and is processed by the same pipeline described above.</li>
+    </ul>
+
+    <h2>Clipboard handling</h2>
+    <p>
+      When you copy a credential, Keys writes it to the system clipboard with a hint that clipboard-history applications should not record it (the <code>org.nspasteboard.ConcealedType</code> convention used by Alfred, Raycast, Pastebot, and others). Keys also schedules an automatic clipboard-clear after a configurable timeout (default 30 seconds). On iOS, clipboard items are marked local-only, which prevents Universal Clipboard from mirroring them to other devices.
+    </p>
+
+    <h2>Analytics, telemetry, and crash reports</h2>
+    <p>
+      None. Keys does not include any analytics SDK, telemetry collection, crash-report collection, advertising identifier, attribution framework, or third-party tracking of any kind. The app makes no network requests on its own initiative; the only outbound traffic is the optional features described above (iCloud sync, AI extraction, credential validation), each of which you control.
+    </p>
+
+    <h2>Required-reason API declarations</h2>
+    <p>
+      Apple requires apps to declare why they call certain platform APIs even when those calls don't transmit data off-device. Keys' privacy manifest declares the following non-data-collection reasons, in line with App Store guidelines:
+    </p>
+    <ul>
+      <li><code>NSPrivacyAccessedAPICategoryUserDefaults</code> &mdash; for reading and writing user preferences (CA92.1).</li>
+      <li><code>NSPrivacyAccessedAPICategoryFileTimestamp</code> &mdash; for vault file metadata used by the local store (C617.1).</li>
+      <li><code>NSPrivacyAccessedAPICategoryDiskSpace</code> &mdash; to detect low-disk situations before writing (85F4.1).</li>
+      <li><code>NSPrivacyAccessedAPICategorySystemBootTime</code> &mdash; for the auto-lock idle timer (35F9.1).</li>
+    </ul>
+    <p>
+      None of these APIs transmit data off your device.
+    </p>
+
+    <h2>Children</h2>
+    <p>
+      Keys is not directed at children under 13. It does not knowingly collect any information from any user, of any age.
+    </p>
+
+    <h2>Your rights</h2>
+    <p>
+      Because Keys stores your data on your devices and in your iCloud account &mdash; not on any developer-operated server &mdash; the controls available to you are operating-system controls:
+    </p>
+    <ul>
+      <li><strong>Access.</strong> Open the app on any of your devices.</li>
+      <li><strong>Export.</strong> Use the in-app export feature to produce an encrypted backup.</li>
+      <li><strong>Delete.</strong> Delete records inside the app, or uninstall the app and remove the iCloud container in iOS / macOS Settings &rarr; Apple ID &rarr; iCloud &rarr; Manage Storage.</li>
+    </ul>
+    <p>
+      The developer cannot retrieve, restore, decrypt, or delete your data on your behalf, because the developer has no copy and no key.
+    </p>
+
+    <h2>Changes to this policy</h2>
+    <p>
+      If this policy materially changes, the updated version will be published at this URL with a new effective date. Substantive changes will also be summarized in the app's release notes.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      Questions about this policy: <a href="mailto:bobkitchen@gmail.com">bobkitchen@gmail.com</a>.
+    </p>
+
+    <div class="footer">
+      Keys &middot; Privacy Policy &middot; Effective May 1, 2026
+    </div>
+  </div>
+</body>
+</html>
